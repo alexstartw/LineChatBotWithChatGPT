@@ -1,4 +1,8 @@
-﻿using LineChatBotWithChatGPT.Configs;
+﻿using ChatGPT.Net.DTO;
+using LineChatBotWithChatGPT.Configs;
+using LineChatBotWithChatGPT.Interfaces;
+using LineChatBotWithChatGPT.Models;
+using LineChatBotWithChatGPT.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -6,7 +10,9 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+builder.Services.AddSingleton<IChatGptService,ChatGptService>();
 builder.Services.Configure<LineBotConfig>(builder.Configuration.GetSection("LineBot"));
+builder.Services.Configure<ChatGptSession>(builder.Configuration.GetSection("ChatGPTSession"));
 
 
 var app = builder.Build();
