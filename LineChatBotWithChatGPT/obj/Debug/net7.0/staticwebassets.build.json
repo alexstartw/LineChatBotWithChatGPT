@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "DURC52J4wvKHr6a3HV8VN1yRwOMSnky0M1EjzuQKMZs=",
+  "Source": "LineChatBotWithChatGPT",
+  "BasePath": "_content/LineChatBotWithChatGPT",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
