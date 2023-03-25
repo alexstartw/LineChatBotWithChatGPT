@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\User\\RiderProjects\\LineChatBotWithChatGPT\\LineChatBotWithChatGPT\\LineChatBotWithChatGPT.csproj": {}
+    "C:\\Users\\User\\RiderProjects\\LineBot\\LineChatBotWithChatGPT\\LineChatBotWithChatGPT.csproj": {}
   },
   "projects": {
-    "C:\\Users\\User\\RiderProjects\\LineChatBotWithChatGPT\\LineChatBotWithChatGPT\\LineChatBotWithChatGPT.csproj": {
+    "C:\\Users\\User\\RiderProjects\\LineBot\\LineChatBotWithChatGPT\\LineChatBotWithChatGPT.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\User\\RiderProjects\\LineChatBotWithChatGPT\\LineChatBotWithChatGPT\\LineChatBotWithChatGPT.csproj",
+        "projectUniqueName": "C:\\Users\\User\\RiderProjects\\LineBot\\LineChatBotWithChatGPT\\LineChatBotWithChatGPT.csproj",
         "projectName": "LineChatBotWithChatGPT",
-        "projectPath": "C:\\Users\\User\\RiderProjects\\LineChatBotWithChatGPT\\LineChatBotWithChatGPT\\LineChatBotWithChatGPT.csproj",
+        "projectPath": "C:\\Users\\User\\RiderProjects\\LineBot\\LineChatBotWithChatGPT\\LineChatBotWithChatGPT.csproj",
         "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\User\\RiderProjects\\LineChatBotWithChatGPT\\LineChatBotWithChatGPT\\obj\\",
+        "outputPath": "C:\\Users\\User\\RiderProjects\\LineBot\\LineChatBotWithChatGPT\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config"
