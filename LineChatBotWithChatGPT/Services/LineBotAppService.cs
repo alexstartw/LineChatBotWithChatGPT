@@ -27,7 +27,7 @@ public class LineBotAppService : WebhookApplication
                 //使用者Id
                 var userId = ev.Source.UserId;
 
-                if (textMessage.Equals("testing"))
+                if (textMessage.Text == "test")
                 {
                     result = new List<ISendMessage>
                     {
