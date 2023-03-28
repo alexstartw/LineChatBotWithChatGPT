@@ -26,12 +26,22 @@ public class LineBotAppService : WebhookApplication
                 var channelId = ev.Source.Id;
                 //使用者Id
                 var userId = ev.Source.UserId;
-                    
-                //回傳 hellow
-                result = new List<ISendMessage>
+
+                if (textMessage.Equals("testing"))
                 {
-                    new TextMessage("hellow")
-                };
+                    result = new List<ISendMessage>
+                    {
+                        new TextMessage("testing")
+                    };
+                }
+                else
+                {
+                    result = new List<ISendMessage>
+                    {
+                        new TextMessage("hellow")
+                    };
+                }
+
             }
                 break;
         }
