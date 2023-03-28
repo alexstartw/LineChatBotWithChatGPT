@@ -15,6 +15,8 @@ public class LineBotAppService : WebhookApplication
     {
         var result = null as List<ISendMessage>;
 
+        Console.WriteLine("alskdj;slkdfhalskhdflkjsahfkashdf;lkajsd;lfkjas;ldkfj;asldkfjl;asdk");
+
         switch (ev.Message)
         {
             //文字訊息

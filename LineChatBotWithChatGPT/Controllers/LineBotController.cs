@@ -39,9 +39,11 @@ public class LineBotController: Controller
         try
         {
             var webhookEventsAsync = await _httpContext.Request.GetWebhookEventsAsync(_lineBotToken.ChannelSecret);
+
             var lineMessagingClient = new LineMessagingClient(_lineBotToken.AccessToken);
             var lineBotApp = new LineBotAppService(lineMessagingClient);
             await lineBotApp.RunAsync(webhookEventsAsync);
+
         }
         catch (Exception e)
         {
