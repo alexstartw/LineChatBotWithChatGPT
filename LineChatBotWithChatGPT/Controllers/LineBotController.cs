@@ -3,7 +3,6 @@ using ChatGPT.Net;
 using ChatGPT.Net.DTO;
 using ChatGPT.Net.Session;
 using Line.Messaging;
-using LineChatBotWithChatGPT.Configs;
 using LineChatBotWithChatGPT.Interfaces;
 using LineChatBotWithChatGPT.Models;
 using LineChatBotWithChatGPT.Services;
@@ -13,34 +12,34 @@ using Microsoft.Extensions.Options;
 
 
 namespace LineChatBotWithChatGPT.Controllers;
-[Route("api/[controller]/[action]")]
+// [Route("api/[controller]/[action]")]
 [ApiController]
-
+[Route("api/linebot")]
 public class LineBotController: Controller
 {
-    private readonly LineBotConfig _lineBotConfig;
-    private readonly ChatGptSession _chatGptSession;
+    private readonly LineBotToken _lineBotToken;
+    private readonly ChatGptToken _chatGptToken;
     private readonly IChatGptService _chatGptService;
     private readonly IHttpContextAccessor _httpContextAccessor;
     private readonly HttpContext _httpContext;
 
     public LineBotController(IServiceProvider serviceProvider, IChatGptService chatGptService,
-        IOptionsMonitor<LineBotConfig> lineBotConfig, IOptionsMonitor<ChatGptSession> chatGptSession)
+        IOptionsMonitor<LineBotToken> lineBotConfig, IOptionsMonitor<ChatGptToken> chatGptSession)
     {
         _chatGptService = chatGptService;
         _httpContextAccessor = serviceProvider.GetRequiredService<IHttpContextAccessor>();
         _httpContext = _httpContextAccessor.HttpContext!;
-        _chatGptSession = chatGptSession.CurrentValue;
-        _lineBotConfig = lineBotConfig.CurrentValue;
+        _chatGptToken = chatGptSession.CurrentValue;
+        _lineBotToken = lineBotConfig.CurrentValue;
     }
 
-    [HttpPost]
+    [HttpPost("run")]
     public async Task<IActionResult> Post()
     {
         try
         {
-            var webhookEventsAsync = await _httpContext.Request.GetWebhookEventsAsync(_lineBotConfig.ChannelSecret);
-            var lineMessagingClient = new LineMessagingClient(_lineBotConfig.AccessToken);
+            var webhookEventsAsync = await _httpContext.Request.GetWebhookEventsAsync(_lineBotToken.ChannelSecret);
+            var lineMessagingClient = new LineMessagingClient(_lineBotToken.AccessToken);
             var lineBotApp = new LineBotAppService(lineMessagingClient);
             await lineBotApp.RunAsync(webhookEventsAsync);
         }
@@ -56,7 +55,7 @@ public class LineBotController: Controller
     [HttpPost]
     public async Task<string> QuestionToChatGpt(string question)
     {
-        var response = await (await _chatGptService.CreateChatGptClient(_chatGptSession.SessionToken)).Ask(question);
+        var response = await (await _chatGptService.CreateChatGptClient(_chatGptToken.SessionToken)).Ask(question);
         Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
         return response;
     }
