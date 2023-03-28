@@ -22,11 +22,13 @@ public class LineBotController: Controller
     private readonly IChatGptService _chatGptService;
     private readonly IHttpContextAccessor _httpContextAccessor;
     private readonly HttpContext _httpContext;
+    private readonly ILogger _logger;
 
     public LineBotController(IServiceProvider serviceProvider, IChatGptService chatGptService,
-        IOptionsMonitor<LineBotToken> lineBotConfig, IOptionsMonitor<ChatGptToken> chatGptSession)
+        IOptionsMonitor<LineBotToken> lineBotConfig, IOptionsMonitor<ChatGptToken> chatGptSession, ILogger<LineBotController> logger)
     {
         _chatGptService = chatGptService;
+        _logger = logger;
         _httpContextAccessor = serviceProvider.GetRequiredService<IHttpContextAccessor>();
         _httpContext = _httpContextAccessor.HttpContext!;
         _chatGptToken = chatGptSession.CurrentValue;
@@ -47,6 +49,7 @@ public class LineBotController: Controller
         }
         catch (Exception e)
         {
+            _logger.LogError(e.Message);
             throw new Exception(e.Message);
         }
 

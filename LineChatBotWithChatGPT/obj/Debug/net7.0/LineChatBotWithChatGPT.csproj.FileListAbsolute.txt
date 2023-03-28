@@ -74,3 +74,7 @@ C:\Users\User\RiderProjects\LineBot\LineChatBotWithChatGPT\obj\Debug\net7.0\refi
 C:\Users\User\RiderProjects\LineBot\LineChatBotWithChatGPT\obj\Debug\net7.0\LineChatBotWithChatGPT.pdb
 C:\Users\User\RiderProjects\LineBot\LineChatBotWithChatGPT\obj\Debug\net7.0\LineChatBotWithChatGPT.genruntimeconfig.cache
 C:\Users\User\RiderProjects\LineBot\LineChatBotWithChatGPT\obj\Debug\net7.0\ref\LineChatBotWithChatGPT.dll
+C:\Users\User\RiderProjects\LineBot\LineChatBotWithChatGPT\bin\Debug\net7.0\nlog.config
+C:\Users\User\RiderProjects\LineBot\LineChatBotWithChatGPT\bin\Debug\net7.0\NLog.dll
+C:\Users\User\RiderProjects\LineBot\LineChatBotWithChatGPT\bin\Debug\net7.0\NLog.Extensions.Logging.dll
+C:\Users\User\RiderProjects\LineBot\LineChatBotWithChatGPT\bin\Debug\net7.0\NLog.Web.AspNetCore.dll

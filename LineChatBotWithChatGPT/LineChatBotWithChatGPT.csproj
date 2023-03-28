@@ -10,11 +10,18 @@
       <PackageReference Include="ChatGPT.Net" Version="1.1.5" />
       <PackageReference Include="Line.Messaging" Version="1.4.5" />
       <PackageReference Include="Microsoft.Extensions.Configuration" Version="7.0.0" />
+      <PackageReference Include="NLog.Web.AspNetCore" Version="5.2.2" />
       <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
     </ItemGroup>
 
     <ItemGroup>
       <_ContentIncludedByDefault Remove="Configs\default-ChatGPT-Net.json" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Content Update="nlog.config">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Content>
     </ItemGroup>
 
 </Project>
