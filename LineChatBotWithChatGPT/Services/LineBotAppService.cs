@@ -42,8 +42,7 @@ public class LineBotAppService : WebhookApplication
                 request.AddHeader("Authorization", "Bearer " + apiKey);
                 request.AddJsonBody(new
                 {
-                    model = "text-davinci-002",
-                    prompt = "What is the capital of France?",
+                    prompt = textMessage.Text,
                     max_tokens = 100,
                     n = 1,
                     temperature = 0.5,
