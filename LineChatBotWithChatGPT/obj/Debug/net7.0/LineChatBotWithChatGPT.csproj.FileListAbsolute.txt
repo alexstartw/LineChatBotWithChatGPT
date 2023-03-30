@@ -78,3 +78,4 @@ C:\Users\User\RiderProjects\LineBot\LineChatBotWithChatGPT\bin\Debug\net7.0\nlog
 C:\Users\User\RiderProjects\LineBot\LineChatBotWithChatGPT\bin\Debug\net7.0\NLog.dll
 C:\Users\User\RiderProjects\LineBot\LineChatBotWithChatGPT\bin\Debug\net7.0\NLog.Extensions.Logging.dll
 C:\Users\User\RiderProjects\LineBot\LineChatBotWithChatGPT\bin\Debug\net7.0\NLog.Web.AspNetCore.dll
+C:\Users\User\RiderProjects\LineBot\LineChatBotWithChatGPT\bin\Debug\net7.0\RestSharp.dll
