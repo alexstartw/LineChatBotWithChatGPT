@@ -1,6 +1,7 @@
 ﻿using System.Text;
 using Line.Messaging;
 using Line.Messaging.Webhooks;
+using LineChatBotWithChatGPT.Interfaces;
 using LineChatBotWithChatGPT.Models;
 using Microsoft.Extensions.Options;
 
@@ -10,12 +11,13 @@ public class LineBotAppService : WebhookApplication
 {
     private readonly LineMessagingClient _messagingClient;
     private readonly ChatGptToken _chatGptToken;
-    private readonly ChatGptService _chatGptService = new();
+    private readonly IChatGptService _chatGptService ;
 
-    public LineBotAppService(LineMessagingClient lineMessagingClient, ChatGptToken chatGptToken)
+    public LineBotAppService(LineMessagingClient lineMessagingClient, ChatGptToken chatGptToken, IChatGptService chatGptService)
     {
         _messagingClient = lineMessagingClient;
         _chatGptToken = chatGptToken;
+        _chatGptService = chatGptService;
     }
 
     protected override async Task OnMessageAsync(MessageEvent ev)
