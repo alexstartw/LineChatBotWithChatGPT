@@ -35,13 +35,14 @@ public class LineBotAppService : WebhookApplication
                 var userId = ev.Source.UserId;
 
                 _logger.LogInformation($"############################################################################");
-                string apiUrl = "https://api.openai.com/v1/engines/GPT-Neo/jobs";
+                string apiUrl = "https://api.openai.com/v1/completions";
                 string apiKey = "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";
                 var client = new RestClient(apiUrl);
                 var request = new RestRequest(apiUrl,Method.Post);
                 request.AddHeader("Authorization", "Bearer " + apiKey);
                 request.AddJsonBody(new
                 {
+                    model = "text-davinci-003",
                     prompt = textMessage.Text,
                     max_tokens = 100,
                     n = 1,
