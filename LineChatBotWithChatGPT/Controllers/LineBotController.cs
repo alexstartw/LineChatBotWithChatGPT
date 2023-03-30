@@ -22,7 +22,7 @@ public class LineBotController: Controller
     private readonly IChatGptService _chatGptService;
     private readonly IHttpContextAccessor _httpContextAccessor;
     private readonly HttpContext _httpContext;
-    private readonly ILogger _logger;
+    private readonly ILogger<LineBotController> _logger;
 
     public LineBotController(IServiceProvider serviceProvider, IChatGptService chatGptService,
         IOptionsMonitor<LineBotToken> lineBotConfig, IOptionsMonitor<ChatGptToken> chatGptSession, ILogger<LineBotController> logger)
@@ -43,7 +43,7 @@ public class LineBotController: Controller
             var webhookEventsAsync = await _httpContext.Request.GetWebhookEventsAsync(_lineBotToken.ChannelSecret);
 
             var lineMessagingClient = new LineMessagingClient(_lineBotToken.AccessToken);
-            var lineBotApp = new LineBotAppService(lineMessagingClient,_chatGptService);
+            var lineBotApp = new LineBotAppService(lineMessagingClient,_chatGptService,_logger);
             await lineBotApp.RunAsync(webhookEventsAsync);
 
         }
