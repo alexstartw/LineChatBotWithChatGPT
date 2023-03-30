@@ -1,13 +1,11 @@
 ﻿using ChatGPT.Net;
 using ChatGPT.Net.DTO;
 using ChatGPT.Net.Session;
-using LineChatBotWithChatGPT.Interfaces;
 
-namespace LineChatBotWithChatGPT.Services;
+namespace LineChatBotWithChatGPT.Repos;
 
-public class ChatGptService : IChatGptService
+public class ChatGptRepo
 {
-
     public async Task<ChatGptClient> CreateChatGptClient(string sessionToken)
     {
         var chatGpt = new ChatGpt();

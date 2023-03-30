@@ -43,7 +43,7 @@ public class LineBotController: Controller
             var webhookEventsAsync = await _httpContext.Request.GetWebhookEventsAsync(_lineBotToken.ChannelSecret);
 
             var lineMessagingClient = new LineMessagingClient(_lineBotToken.AccessToken);
-            var lineBotApp = new LineBotAppService(lineMessagingClient, _chatGptToken, _chatGptService);
+            var lineBotApp = new LineBotAppService(lineMessagingClient,_chatGptService);
             await lineBotApp.RunAsync(webhookEventsAsync);
 
         }
@@ -60,7 +60,8 @@ public class LineBotController: Controller
     [HttpPost]
     public async Task<string> QuestionToChatGpt(string question)
     {
-        var response = await (await _chatGptService.CreateChatGptClient(_chatGptToken.SessionToken)).Ask(question);
+        var chatGptClient = await _chatGptService.CreateChatGptClient(_chatGptToken.SessionToken);
+        var response = await chatGptClient.Ask(question);
         Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
         return response;
     }
