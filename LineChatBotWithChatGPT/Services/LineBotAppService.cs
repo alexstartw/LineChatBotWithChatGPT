@@ -1,19 +1,27 @@
-﻿using Line.Messaging;
+﻿using System.Text;
+using Line.Messaging;
 using Line.Messaging.Webhooks;
+using LineChatBotWithChatGPT.Models;
+using Microsoft.Extensions.Options;
 
 namespace LineChatBotWithChatGPT.Services;
 
 public class LineBotAppService : WebhookApplication
 {
     private readonly LineMessagingClient _messagingClient;
-    public LineBotAppService(LineMessagingClient lineMessagingClient)
+    private readonly ChatGptToken _chatGptToken;
+    private readonly ChatGptService _chatGptService = new();
+
+    public LineBotAppService(LineMessagingClient lineMessagingClient, ChatGptToken chatGptToken)
     {
         _messagingClient = lineMessagingClient;
+        _chatGptToken = chatGptToken;
     }
 
     protected override async Task OnMessageAsync(MessageEvent ev)
     {
         var result = null as List<ISendMessage>;
+        var chatGptClient = await _chatGptService.CreateChatGptClient(_chatGptToken.SessionToken);
 
         switch (ev.Message)
         {
@@ -25,20 +33,27 @@ public class LineBotAppService : WebhookApplication
                 //使用者Id
                 var userId = ev.Source.UserId;
 
-                if (textMessage.Text == "test")
+                var response = await chatGptClient.Ask(textMessage.Text);
+                Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
+                result = new List<ISendMessage>
                 {
-                    result = new List<ISendMessage>
-                    {
-                        new TextMessage("testing")
-                    };
-                }
-                else
-                {
-                    result = new List<ISendMessage>
-                    {
-                        new TextMessage("hellow")
-                    };
-                }
+                    new TextMessage(response)
+                };
+
+                // if (textMessage.Text == "test")
+                // {
+                //     result = new List<ISendMessage>
+                //     {
+                //         new TextMessage("testing")
+                //     };
+                // }
+                // else
+                // {
+                //     result = new List<ISendMessage>
+                //     {
+                //         new TextMessage("hellow")
+                //     };
+                // }
 
             }
                 break;
