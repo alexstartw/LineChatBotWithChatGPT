@@ -1,6 +1,7 @@
 ﻿using Line.Messaging;
 using Line.Messaging.Webhooks;
 using LineChatBotWithChatGPT.Controllers;
+using LineChatBotWithChatGPT.Interfaces;
 
 
 namespace LineChatBotWithChatGPT.Services;
@@ -8,12 +9,14 @@ namespace LineChatBotWithChatGPT.Services;
 public class LineBotAppService : WebhookApplication
 {
     private readonly LineMessagingClient _messagingClient;
+    private readonly IChatGptService _chatGptService;
     private readonly ILogger<LineBotController> _logger;
 
-    public LineBotAppService(LineMessagingClient lineMessagingClient, ILogger<LineBotController> logger)
+    public LineBotAppService(LineMessagingClient lineMessagingClient, ILogger<LineBotController> logger, IChatGptService chatGptService)
     {
         _messagingClient = lineMessagingClient;
         _logger = logger;
+        _chatGptService = chatGptService;
     }
 
     protected override async Task OnMessageAsync(MessageEvent ev)
@@ -25,25 +28,34 @@ public class LineBotAppService : WebhookApplication
             //文字訊息
             case TextEventMessage textMessage:
             {
-                //頻道Id
+                
                 var channelId = ev.Source.Id;
-                //使用者Id
+
                 var userId = ev.Source.UserId;
 
-                if (textMessage.Text == "test")
+                var chatGptResponse = _chatGptService.ChatGptResponse(textMessage);
+                result = new List<ISendMessage>
                 {
-                    result = new List<ISendMessage>
-                    {
-                        new TextMessage("testing")
-                    };
-                }
-                else
-                {
-                    result = new List<ISendMessage>
-                    {
-                        new TextMessage("hellow")
-                    };
-                }
+                    new TextMessage(chatGptResponse.Content)
+                };
+                
+                
+                
+
+                // if (textMessage.Text == "test")
+                // {
+                //     result = new List<ISendMessage>
+                //     {
+                //         new TextMessage("testing")
+                //     };
+                // }
+                // else
+                // {
+                //     result = new List<ISendMessage>
+                //     {
+                //         new TextMessage("hellow")
+                //     };
+                // }
 
             }
                 break;
