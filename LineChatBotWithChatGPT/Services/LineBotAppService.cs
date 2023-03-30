@@ -35,7 +35,7 @@ public class LineBotAppService : WebhookApplication
                 var userId = ev.Source.UserId;
 
                 _logger.LogInformation($"############################################################################");
-                string apiUrl = "https://api.openai.com/v1/engines/gpt-3/jobs";
+                string apiUrl = "https://api.openai.com/v1/engines/GPT-Neo/jobs";
                 string apiKey = "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";
                 var client = new RestClient(apiUrl);
                 var request = new RestRequest(apiUrl,Method.Post);
@@ -50,6 +50,7 @@ public class LineBotAppService : WebhookApplication
                 var response = client.Execute(request);
                 
                 
+
                 _logger.LogInformation($"Answer: {response.Content}");
                 _logger.LogInformation($"*****************************************************************************");
                 result = new List<ISendMessage>
