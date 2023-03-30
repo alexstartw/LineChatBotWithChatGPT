@@ -10,7 +10,7 @@ namespace LineChatBotWithChatGPT.Services;
 public class LineBotAppService : WebhookApplication
 {
     private readonly LineMessagingClient _messagingClient;
-    private IChatGptService _chatGptService;
+    private readonly IChatGptService _chatGptService;
 
     public LineBotAppService(LineMessagingClient lineMessagingClient, IChatGptService chatGptService)
     {
