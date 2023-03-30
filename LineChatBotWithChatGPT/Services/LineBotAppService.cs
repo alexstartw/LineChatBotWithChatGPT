@@ -34,45 +34,20 @@ public class LineBotAppService : WebhookApplication
                 //使用者Id
                 var userId = ev.Source.UserId;
 
-                _logger.LogInformation($"############################################################################");
-                string apiUrl = "https://api.openai.com/v1/engines/text-davinci-003/completions";
-                string apiKey = "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";
-                var client = new RestClient(apiUrl);
-                var request = new RestRequest(apiUrl,Method.Post);
-                request.AddHeader("Authorization", "Bearer " + apiKey);
-                request.AddJsonBody(new
+                if (textMessage.Text == "test")
                 {
-                    prompt = textMessage.Text,
-                    max_tokens = 100,
-                    n = 1,
-                    temperature = 0.5,
-                });
-                var response = client.Execute(request);
-                
-                
-
-                _logger.LogInformation($"Answer: {response.Content}");
-                _logger.LogInformation($"*****************************************************************************");
-                result = new List<ISendMessage>
+                    result = new List<ISendMessage>
+                    {
+                        new TextMessage("testing")
+                    };
+                }
+                else
                 {
-                    new TextMessage(response.Content)
-                };
-
-
-                // if (textMessage.Text == "test")
-                // {
-                //     result = new List<ISendMessage>
-                //     {
-                //         new TextMessage("testing")
-                //     };
-                // }
-                // else
-                // {
-                //     result = new List<ISendMessage>
-                //     {
-                //         new TextMessage("hellow")
-                //     };
-                // }
+                    result = new List<ISendMessage>
+                    {
+                        new TextMessage("hellow")
+                    };
+                }
 
             }
                 break;
@@ -82,5 +57,25 @@ public class LineBotAppService : WebhookApplication
             await _messagingClient.ReplyMessageAsync(ev.ReplyToken, result);
     }
 
+    private static RestResponse RestResponse(TextEventMessage textMessage)
+    {
+        _logger.LogInformation($"############################################################################");
+        string apiUrl = "https://api.openai.com/v1/engines/text-davinci-003/completions";
+        string apiKey = "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";
+        var client = new RestClient(apiUrl);
+        var request = new RestRequest(apiUrl, Method.Post);
+        request.AddHeader("Authorization", "Bearer " + apiKey);
+        request.AddJsonBody(new
+        {
+            prompt = textMessage.Text,
+            max_tokens = 100,
+            n = 1,
+            temperature = 0.5,
+        });
+        var response = client.Execute(request);
 
+        _logger.LogInformation($"Answer: {response.Content}");
+        _logger.LogInformation($"*****************************************************************************");
+        return response;
+    }
 }
