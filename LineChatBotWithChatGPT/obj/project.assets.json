@@ -343,6 +343,19 @@
           "Microsoft.AspNetCore.App"
         ]
       },
+      "RestSharp/109.0.1": {
+        "type": "package",
+        "compile": {
+          "lib/net7.0/RestSharp.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net7.0/RestSharp.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "runtime.debian.8-x64.runtime.native.System.Security.Cryptography.OpenSsl/4.3.0": {
         "type": "package",
         "runtimeTargets": {
@@ -2364,6 +2377,26 @@
         "lib/netstandard2.0/NLog.Web.AspNetCore.xml",
         "nlog.web.aspnetcore.5.2.2.nupkg.sha512",
         "nlog.web.aspnetcore.nuspec"
+      ]
+    },
+    "RestSharp/109.0.1": {
+      "sha512": "OkJ23uaV8qwCKuR7RKBUFlnXxIDZ7P1jEaoDawXgysujIcWZgIwE6p90kJZxY9EVv9ESjZtGlSmP8k+kOfDH9g==",
+      "type": "package",
+      "path": "restsharp/109.0.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net471/RestSharp.dll",
+        "lib/net471/RestSharp.xml",
+        "lib/net6.0/RestSharp.dll",
+        "lib/net6.0/RestSharp.xml",
+        "lib/net7.0/RestSharp.dll",
+        "lib/net7.0/RestSharp.xml",
+        "lib/netstandard2.0/RestSharp.dll",
+        "lib/netstandard2.0/RestSharp.xml",
+        "restsharp.109.0.1.nupkg.sha512",
+        "restsharp.nuspec",
+        "restsharp.png"
       ]
     },
     "runtime.debian.8-x64.runtime.native.System.Security.Cryptography.OpenSsl/4.3.0": {
@@ -5797,6 +5830,7 @@
       "Line.Messaging >= 1.4.5",
       "Microsoft.Extensions.Configuration >= 7.0.0",
       "NLog.Web.AspNetCore >= 5.2.2",
+      "RestSharp >= 109.0.1",
       "Swashbuckle.AspNetCore >= 6.5.0"
     ]
   },
@@ -5852,6 +5886,10 @@
           "NLog.Web.AspNetCore": {
             "target": "Package",
             "version": "[5.2.2, )"
+          },
+          "RestSharp": {
+            "target": "Package",
+            "version": "[109.0.1, )"
           },
           "Swashbuckle.AspNetCore": {
             "target": "Package",
